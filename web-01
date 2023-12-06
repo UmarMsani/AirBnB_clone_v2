@@ -1,0 +1,8 @@
+# setting up the ssh agent
+eval $("ssh-agent")
+
+# path to identifyfile
+ssh-add ~/.ssh/school
+
+# username and IP Address
+ssh ubuntu@54.144.198.163
