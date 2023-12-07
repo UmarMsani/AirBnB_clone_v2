@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Check if less than 4 parameters are passed
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 FILE_PATH SERVER_IP USERNAME SSH_KEY_PATH"
+    exit 1
+fi
+
+# Assigning parameters to variables
+FILE_PATH="$1"
+SERVER_IP="$2"
+USERNAME="ubuntu"
+SSH_KEY_PATH="/root/.ssh/school"
+
+# Transfer file to the server using scp
+scp -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$FILE_PATH" "$USERNAME@$SERVER_IP":~/
+
+exit 0

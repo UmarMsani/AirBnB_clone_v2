@@ -12,12 +12,21 @@ folders=("/data" "/data/web_static" "/data/web_static/releases" "/data/web_stati
 for folder in "${folders[@]}"; do
     if [ ! -d "$folder" ]; then
         sudo mkdir -p "$folder"
-        sudo chown -R ubuntu:ubuntu "$folder"
     fi
 done
 
+# Change ownership specifically for /data
+sudo chown -R ubuntu:ubuntu "/data"
+
 # Create fake HTML file for testing
-html_content="<html><head><title>Test Page</title></head><body>Testing Nginx configuration</body></html>"
+html_content="<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    Testing Nginx configuration
+</body>
+</html>"
 html_path="/data/web_static/releases/test/index.html"
 echo "$html_content" | sudo tee "$html_path" > /dev/null
 
