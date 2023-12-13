@@ -38,7 +38,7 @@ fi
 sudo ln -s /data/web_static/releases/test/ "$symbolic_link"
 
 # Update Nginx configuration
-nginx_config="/etc/nginx/sites-available/default"
+nginx_config="/etc/nginx/sites-enabled/default"
 sudo sed -i '/hbnb_static/ d' "$nginx_config"
 nginx_content="\\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n"
 sudo sed -i "/server_name _;/a $nginx_content" "$nginx_config"
