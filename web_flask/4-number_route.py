@@ -14,7 +14,8 @@ Default value of text is “is cool”
 Uses the option strict_slashes=False in the route definitions.
 """
 
-from flask import Flask, escape
+from flask import Flask
+from werkzeug.utils import escape
 
 app = Flask(__name__)
 
