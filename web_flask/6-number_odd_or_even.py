@@ -7,8 +7,8 @@ The web application listens on 0.0.0.0, port 5000.
 Routes:
 /: Displays “Hello HBNB!”
 /hbnb: Displays “HBNB”
-/c/<text>: Displays “C ” followed by the value of the text variable (underscores replaced with spaces)
-/python/<text>: Displays “Python ” followed by the value of the text variable (underscores replaced with spaces)
+/c/<text>: Displays “C ” followed by the value of the text variable
+/python/<text>: Displays “Python ” followed by the value of the text var
 Default value of text is “is cool”
 /number/<n>: Displays “n is a number” only if n is an integer
 /number_template/<n>: Displays an HTML page only if n is an integer:
@@ -63,7 +63,7 @@ def number_template(n):
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def number_odd_or_even(n):
-    """Displays an HTML page with 'Number: n is even|odd' in H1 tag inside the body."""
+    """Displays HTML page with 'Number: n is even|odd' in H1 tag inside body"""
     if isinstance(n, int):
         return render_template("6-number_odd_or_even.html", n=n)
 
