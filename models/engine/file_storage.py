@@ -35,9 +35,9 @@ class FileStorage:
         from models.review import Review
 
         classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
+                    "BaseModel": BaseModel, "User": User, "Place": Place,
+                    "State": State, "City": City, "Amenity": Amenity,
+                    "Review": Review
                   }
         try:
             with open(self.__file_path, 'r') as f:
@@ -54,3 +54,7 @@ class FileStorage:
             return
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects.pop(key, None)
+
+    def close(self):
+        """Call reload() method for deserializing the JSON file to objects"""
+        self.reload()

@@ -13,12 +13,13 @@ from models.place import Place
 from models.review import Review
 
 class DBStorage:
-    __engine = None
-    __session = None
 
     all_classes = {"BaseModel": BaseModel, "User": User, "State": State,
                    "City": City, "Amenity": Amenity, "Place": Place,
                    "Review": Review}
+
+    __engine = None
+    __session = None
 
     def __init__(self):
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
