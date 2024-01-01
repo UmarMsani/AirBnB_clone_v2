@@ -13,8 +13,11 @@ class State(BaseModel):
 
     name = Column(String(128), nullable=False)  # Column representing name
 
-    cities = relationship("City", backref="state",
-            cascade="all, delete-orphan")
+    cities = relationship(
+            "City",
+            backref="state",
+            cascade="all, delete-orphan"
+            )
 
     if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
