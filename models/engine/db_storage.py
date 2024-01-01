@@ -16,19 +16,19 @@ from models.review import Review
 class DBStorage:
 
     all_classes = {"BaseModel": BaseModel, "User": User, "State": State,
-                   "City": City, "Amenity": Amenity, "Place": Place,
-                   "Review": Review}
+            "City": City, "Amenity": Amenity, "Place": Place,
+            "Review": Review}
 
     __engine = None
     __session = None
 
     def __init__(self):
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(getenv('HBNB_MYSQL_USER'),
-                                             getenv('HBNB_MYSQL_PWD'),
-                                             getenv('HBNB_MYSQL_HOST'),
-                                             getenv('HBNB_MYSQL_DB')),
-                                      pool_pre_ping=True)
+                format(getenv('HBNB_MYSQL_USER'),
+                    getenv('HBNB_MYSQL_PWD'),
+                    getenv('HBNB_MYSQL_HOST'),
+                    getenv('HBNB_MYSQL_DB')),
+                pool_pre_ping=True)
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
 
@@ -66,7 +66,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
 
         session_factory = sessionmaker(bind=self.__engine,
-                                       expire_on_commit=False)
+                expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from models.base_model import BaseModel
-from sqlalchemy import Column, String
+from models.base_model import BaseModel, Base
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 import models
 from os import getenv
@@ -9,13 +9,13 @@ from os import getenv
 
 class State(BaseModel):
     """ State class """
-    __tablename__ = 'states'  # Table name
+    __tablename__ = 'States'
 
-    name = Column(String(128), nullable=False)  # Column representing name
+    name = Column(String(128), nullable=False)
 
     cities = relationship(
             "City",
-            backref="state",
+            backref="State",
             cascade="all, delete-orphan"
             )
 

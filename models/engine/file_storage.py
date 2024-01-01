@@ -14,9 +14,13 @@ class FileStorage:
         currently in storage
         """
         if cls is None:
-            return FileStorage.__objects
-        return {key: obj for key, obj in FileStorage.__objects.items()
-                if isinstance(obj, cls)}
+            return self.__objects
+        elif type(cls) == str:
+            return {key: obj for key, obj in self.__objects.items()
+                    if obj.__class__.__name__ == cls}
+        else:
+            return {key: obj for key, obj in self.__objects.items()
+                    if obj.__class__ == cls}
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -40,10 +44,10 @@ class FileStorage:
         from models.review import Review
 
         classes = {
-                    "BaseModel": BaseModel, "User": User, "Place": Place,
-                    "State": State, "City": City, "Amenity": Amenity,
-                    "Review": Review
-                  }
+                "BaseModel": BaseModel, "User": User, "Place": Place,
+                "State": State, "City": City, "Amenity": Amenity,
+                "Review": Review
+                }
         try:
             with open(self.__file_path, 'r') as f:
                 temp = json.load(f)

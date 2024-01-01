@@ -36,7 +36,7 @@ class BaseModel:
         cls = type(self).__name__
         return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
 
-    def save(self):
+    def save(self, storage):
         """Updates updated_at with current time when instance is changed"""
         self.updated_at = datetime.utcnow()
         storage.save()
@@ -51,6 +51,6 @@ class BaseModel:
         dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
 
-    def delete(self):
+    def delete(self, storage):
         """Deletes the current instance from storage"""
         storage.delete(self)
